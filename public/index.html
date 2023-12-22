@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GUI for Refrigeradar">
+    <meta name="author" content="Olli Maula">
+    <meta charset="UTF-8">
+    <title>Refrigeradar</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/> <!-- google icons -->
+    <script src="/socket.io/socket.io.js"></script> <!-- websockets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> <!-- constructor for charts -->
+    <script type="text/javascript" src="javascript/code.js"></script>
+</head>
+<body onload="init()">  <!-- loads data when website starts loading -->
+
+<div id="page">
+
+    <section id="top" class="row col-12">
+
+        <header class="col-9">
+            <img src="/images/ui5shadow.png" alt="futuristic title card">
+            <h1><img src="/images/title.png" alt="futuristic title card"></h1>
+        </header>
+
+        <nav class="col-3">
+            <button class="nav" onclick="info(1)">
+                <img src="/images/nav3.png" alt="futuristic ui element">
+                <span class="material-symbols-outlined upsize">info</span>
+            </button>
+            <button class="nav" onclick="init()">
+                <img src="/images/nav1.png" alt="futuristic ui element">
+                <span class="material-symbols-outlined upsize">refresh</span>
+            </button>
+            <button class="nav" id="update_button" value="0" onclick="auto_update()">
+                <img src="/images/nav2.png" alt="futuristic ui element">
+                <span id="renew" class="material-symbols-outlined upsize">autorenew</span>
+            </button>
+        </nav>
+
+        <section class="modal hidden"> <!-- info modal -->
+
+            <h5>Refrigeradar</h5>
+            <p>
+            "Refrigeradar" is a combined Internet of Things and Full Stack project. 
+            RuuviTag Bluetooth sensor measures and broadcasts the climate conditions inside my fridge.
+            A Raspberry Pi computer picks up and sends the information to a MongoDB database every 10 minutes.
+            NodeJS server fetches the MongoDB collection and draws it for the end user.
+            </p>
+            <button id="btn-close" onclick="info(0)">OK</button>
+
+        </section>  <!-- info modal ends -->
+
+        <div class="overlay hidden"></div> <!-- blur overlay for info modal -->
+
+        <section id="auto_info_pop_up" class="pop_up hidden"></section> <!-- auto update confirmation message -->
+
+    </section> <!-- top ends -->
+
+    <main class="row"> 
+
+        <section id="middle" class="row col-12"> <!-- most recent data -->
+
+            <span id="current_time"></span>
+            <span id="current_temperature"></span>
+            <span id="current_humidity"></span>
+            <span id="current_pressure"></span>
+            <img src="/images/ui4shadow.png" alt="futuristic ui element">
+
+        </section> <!-- middle ends -->
+
+        <section id="bottom" class="row col-12">
+
+            <div class="first col-5"> <!-- history container -->
+                <h3>History</h3>
+                <img src="/images/ui1shadow.png" alt="futuristic background ui">
+                <ul id="payloads_list"></ul>
+            </div> <!-- history ends -->
+
+            <div class="second col-7"> <!-- "fridge talk" chat container -->
+                <h4>Fridge talk</h4>
+                <img src="/images/ui3shadow.png" alt="futuristic background ui">
+                <div id="message_container"></div>
+                <form id="form">
+                    <label id="message_label" for="message_input">Message: </label>
+                    <input type="text" id="message_input">
+                    <button id="chat_button" type="submit"></button><br>
+                    <label id="user_label" for="user">Username: </label>
+                    <input type="text" id="user">
+                </form>
+            </div> <!-- fridge talk ends -->
+
+            <section class="charts row col-12"> <!-- chart.js chart containers -->
+                
+                <div id="canvas_container_1">
+                    <h2>Temperature</h2>
+                    <img src="/images/ui2shadow.png" alt="futuristic background ui">
+                    <canvas id="temperature_chart"></canvas>
+                </div>
+
+                <div id="canvas_container_2">
+                    <h2>Humidity</h2>
+                    <img src="/images/ui2shadow.png" alt="futuristic background ui">
+                    <canvas id="humidity_chart"></canvas>
+                </div>
+
+                <div id="canvas_container_3">
+                    <h2>Pressure</h2>
+                    <img src="/images/ui2shadow.png" alt="futuristic background ui">
+                    <canvas id="pressure_chart"></canvas>
+                </div>
+
+            </section> <!-- charts ends -->
+
+        </section> <!-- bottom ends -->
+
+        <footer>
+            Image by <a href="https://www.freepik.com/free-photo/abstract-uv-ultraviolet-light-composition_21794900.htm#query=background&position=19&from_view=keyword">Freepik</a>
+            | <a href="https://www.vecteezy.com/free-vector/futuristic">Futuristic Vectors by Vecteezy</a>
+        </footer>
+
+    </main>
+
+</div>
+<script type="text/javascript" src="client.js"></script> <!-- client side websockets, needs to be loaded after page -->
+
+</body>
+</html>

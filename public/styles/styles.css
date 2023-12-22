@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&family=Roboto:wght@700&family=Rubik+Bubbles&display=swap');
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.row::after {clear: both; display: block;}
+
+:root {
+    --text: #007acc;
+    --boxes: #1e1e1e;
+    --background: #3e3e42;
+    --border: #2d2d30;
+    --black: #000000;
+    --white: #f5f5f5;
+    --alt: #ff66cc;
+}
+
+* {
+    box-sizing: border-box; /* Includes border and padding in element size */
+    margin: 0;
+    padding: 0;
+} 
+
+html {
+    font-family: sans-serif; /* Fallback */
+    font-size: 100%;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    max-width: 1440px;
+    min-width: 1140px;
+    margin: 0 auto;
+    background-image: url("/images/light.jpg");
+    background-size: contain;
+}
+
+#page {
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    position: relative;
+    max-width: 1140px;
+    min-width: 1140px;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* || Top  */
+header {
+    margin: 2em 0;
+    display: block;
+    text-align: left;
+    float: left;
+    position: relative;
+}
+nav {
+    margin: 2em 0;
+    text-align: center;
+    background-color: transparent;
+    font-size: 1.2em;
+    float: right;
+}
+.nav {
+    position: relative;
+    background-color: transparent;
+    max-width: 32%;
+    padding: 0;
+    margin: 0.1em;
+    border: none;
+    float: left;
+    transition-duration: 1s;
+}
+.nav:hover {
+    cursor: pointer;
+    transition-duration: 1s;
+    transform: rotate(1turn) scale(1.1);
+}
+.pop_up {
+    background-color: var(--boxes);
+    border: 5px solid var(--border);
+    border-radius: 0 0 2em 2em;
+    min-width: 30em;
+    min-height: 3em;
+    position: fixed;
+    top: -5px;
+    left: 37%;
+    z-index: 1;
+    font-size: larger;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text);
+}
+.pop_up p {
+    margin: 1em 0 0 0;
+    text-align: center;
+}
+
+/* || Current */
+#middle {
+    margin: 0em auto;
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+}
+#current_time {
+    position: absolute;
+    top: 2.5em;
+    left: 25%;
+    font-size: 30px;
+}
+#current_temperature{
+    position: absolute;
+    top: 7.6em;
+    left: 15%;
+}
+#current_humidity {
+    position: absolute;
+    top: 7.6em;
+    left: 40%;
+}
+#current_pressure {
+    position: absolute;
+    top: 7.6em;
+    left: 65%;
+}
+span p {
+    font-family: 'Roboto', sans-serif;
+    display: inline;
+}
+
+/* || History */
+.first {
+    float: left;
+    overflow: hidden;
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    position: relative;
+}
+ul {
+    text-align: left;
+    line-height: 110%;
+    position: absolute;
+    top: 6.3em;
+    left: 6.3em;
+    max-width: 80%;
+    list-style: none;
+}
+li { 
+    margin: 1em 0;
+}
+
+/* || Chat */
+.second {
+    float: right;
+    overflow: hidden;
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+}
+#message_container {
+    width: 70%;
+    max-height: 50%;
+    position: absolute;
+    top: 8em;
+    left: 7em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    text-align: left;
+}
+#message_input {
+    position: absolute;
+    width: 50%;
+    bottom: 11em;
+    left: 14em;
+}
+#message_label {
+    position: absolute;
+    bottom: 9.2em;
+    left: 6.6em;
+}
+#chat_button {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: none;
+}
+#user {
+    position: absolute;
+    bottom: 8.9em;
+    left: 14.5em;
+}
+#user_label{
+    position: absolute;
+    bottom: 7.5em;
+    left: 6.6em;
+}
+
+/* || Charts */
+.charts {
+    margin: 2em 0;
+    overflow: hidden;
+}
+#canvas_container_1{
+    width: 100%;
+    margin: 1em 0;
+    position: relative;
+}
+#canvas_container_2{
+    width: 100%;
+    margin: 1em 0;
+    position: relative;
+}
+#canvas_container_3{
+    width: 100%;
+    margin: 1em 0;
+    position: relative;
+}
+canvas {
+    position: absolute;
+    bottom: 9em;
+    left: 10em;
+    max-width: 68%;
+}
+
+/* || Modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5em;
+    width: 45em;
+    padding: 1.3em;
+    min-height: 16em;
+    position: fixed;
+    top: 25%;
+    left: 43%;
+    margin-left: -14em;
+    background-color: var(--boxes);
+    border: 0.5em solid var(--border);
+    font-family: 'Roboto', sans-serif;
+    font-size: larger;
+    color: var(--text);
+    border-radius: 1em;
+    z-index: 2;
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+button {
+    background-color: var(--border);
+    color: var(--text);
+    padding: 1em;
+    border-color: var(--background);
+}
+
+/* || Headers */
+h1 {
+    position: absolute;
+    top: 1.9em;
+    left: 6.45em;
+    max-width: 65%;
+}
+h2 {
+    color: var(--black);
+    background-color: transparent;
+    text-align: left;
+    font-family: 'Iceland', cursive;
+    font-size: 5em;
+    position: absolute;
+    top: 0.8em;
+    left: 2.3em;
+}
+h3 {
+    color: var(--black);
+    background-color: transparent;
+    text-align: left;
+    font-family: 'Iceland', cursive;
+    font-size: 2em;
+    position: absolute;
+    top: 2em;
+    left: 2.7em;
+}
+h4 {
+    color: var(--black);
+    background-color: transparent;
+    text-align: left;
+    font-family: 'Iceland', cursive;
+    font-size: 2.5em;
+    position: absolute;
+    top: 1.7em;
+    left: 2.5em;
+}
+h5 {
+    color: var(--text);
+    background-color: transparent;
+    font-family: 'Iceland', cursive;
+    font-size: 4em;
+}
+
+/* || Google icons */
+.material-symbols-outlined {
+    position: absolute;
+    left: 22%;
+    top: 22%;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 700,
+        'GRAD' 200;
+    font-size: 40px !important;
+}
+.upsize {
+    font-size: 52px !important; /* override for too small font */
+}
+
+/* || Footer */
+footer {
+    position: absolute; 
+    left: 1em;
+}
